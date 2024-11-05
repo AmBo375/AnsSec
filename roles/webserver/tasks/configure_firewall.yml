@@ -1,0 +1,29 @@
+- hosts: webserver
+  become: true
+
+  tasks:
+    - name: Install UFW on Debian
+      apt:
+        name: ufw
+        state: present
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Install UFW on RedHat
+      yum:
+        name: ufw
+        state: present
+      when: ansible_facts['os_family'] == "RedHat"
+
+    - name: Enabling UFW
+      ufw:
+        state: enabled
+
+    - name: Allow ssh
+      ufw:
+        rule: allow
+        port: 22
+
+    - name: Allow http
+      ufw:
+        rule: allow
+        port: 80

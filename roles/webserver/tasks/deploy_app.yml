@@ -1,0 +1,17 @@
+- hosts: webserver
+  become: true
+  tasks:
+    - name: Create Directory
+      file:
+        path: /var/www/html
+        state: directory
+
+    - name: Copy File to Remote Machines
+      copy:
+        src: /home/kirb/Sessions/Python/TP4/roles/webserver/files/index.html
+        dest: /var/www/html/index.html
+
+    - name: Restart Apache
+      service:
+        name: "{{ 'apache2' if ansible_facts['os_family'] == 'Debian' else 'httpd' }}"
+        state: restarted

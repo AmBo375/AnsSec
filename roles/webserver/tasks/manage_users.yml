@@ -1,0 +1,26 @@
+- hosts: webserver
+  become: true
+
+  vars:
+    group:
+      Debian: sudo
+      RedHat: wheel
+
+  vars_prompt:
+    name: pwd
+    prompt: Password
+
+  tasks:
+    - name: Créer un utilisateur sudo
+      user:
+        name: Ammar
+        password: "{{ pwd | password_hash('sha512') }}"
+        groups: "{{ group[ansible_facts['os_family']] }}"
+        append: yes
+        state: present
+
+    - name: Supprimer un utilisateur
+      user:
+        name: Ammar
+        remove: yes
+        state: absent

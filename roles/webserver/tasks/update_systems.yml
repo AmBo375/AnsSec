@@ -1,0 +1,14 @@
+- hosts: webserver
+  become: true
+  tasks:
+    - name: Update Packages in Debian
+      apt:
+        name: "*"
+        state: latest
+      when: ansible_facts["os_family"] == 'Debian'
+
+    - name: Update Packages in RedHat
+      dnf:
+        name: "*"
+        state: latest
+      when: ansible_facts["os_family"] == 'RedHat'
