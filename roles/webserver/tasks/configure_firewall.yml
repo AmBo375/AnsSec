@@ -1,22 +1,18 @@
-- hosts: webserver
-  become: true
+- name: Install UFW
+  ansible.builtin.package:
+    name: ufw
+    state: present
 
-  tasks:
-    - name: Install UFW
-      ansible.builtin.package:
-        name: ufw
-        state: present
+- name: Enabling UFW
+  community.general.ufw:
+    state: enabled
 
-    - name: Enabling UFW
-      community.general.ufw:
-        state: enabled
+- name: Allow ssh
+  community.general.ufw:
+    rule: allow
+    port: 22
 
-    - name: Allow ssh
-      community.general.ufw:
-        rule: allow
-        port: 22
-
-    - name: Allow http
-      community.general.ufw:
-        rule: allow
-        port: 80
+- name: Allow http
+  community.general.ufw:
+    rule: allow
+    port: 80

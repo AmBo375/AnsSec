@@ -1,17 +1,14 @@
-- hosts: webserver
-  become: true
-  tasks:
-    - name: Create Directory
-      ansible.builtin.file:
-        path: /var/www/html
-        state: directory
+- name: Create Directory
+  ansible.builtin.file:
+    path: /var/www/html
+    state: directory
 
-    - name: Copy File to Remote Machines
-      ansible.builtin.copy:
-        src: /home/kirb/Sessions/Python/TP4/roles/webserver/files/index.html
-        dest: /var/www/html/index.html
+- name: Copy File to Remote Machines
+  ansible.builtin.copy:
+    src: /home/kirb/Sessions/Python/TP4/roles/webserver/files/index.html
+    dest: /var/www/html/index.html
 
-    - name: Restart Apache
-      ansible.builtin.service:
-        name: "{{ 'apache2' if ansible_facts['os_family'] == 'Debian' else 'httpd' }}"
-        state: restarted
+- name: Restart Apache
+  ansible.builtin.service:
+    name: "{{ 'apache2' if ansible_facts['os_family'] == 'Debian' else 'httpd' }}"
+    state: restarted

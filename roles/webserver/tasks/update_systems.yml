@@ -1,7 +1,4 @@
-- hosts: webserver
-  become: true
-  tasks:
-    - name: Update Packages
-      ansible.builtin.package:
-        name: "*"
-        state: latest
+- name: Update Packages
+  ansible.builtin.package:
+    name: "*"
+    state: latest

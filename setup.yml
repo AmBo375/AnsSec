@@ -1,0 +1,16 @@
+- hosts: webserver
+  become: true
+  roles:
+    - webserver
+
+  vars_prompt:
+    - name: user
+      prompt: Username
+      private: no
+
+    - name: pwd
+      prompt: Password
+      encrypt: sha512_crypt
+
+    - name: access
+      prompt: Is it a sudo user? (y or n)

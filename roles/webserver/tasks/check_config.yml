@@ -1,23 +1,14 @@
-- hosts: webserver
-  become: true
+- name: Check SSH status
+  systemd:
+    name: "{{ 'ssh' if ansible_facts['os_family'] == 'Debian' else 'sshd' }}"
+  register: srv
 
-  tasks:
-    - name: Check SSH status
-      systemd:
-        name: "{{ 'ssh' if ansible_facts['os_family'] == 'Debian' else 'sshd' }}"
-      register: srv
+- name: Debug
+  debug:
+    var: srv.status.ActiveState
 
-    - name: Debug
-      debug:
-        var: srv.status.ActiveState
-
-    - name: Check if SSH port is open in UFW
-      wait_for:
-        port: 22
-        timeout: 5
-      notify: message
-
-  handlers:
-    - name: message
-      debug:
-        msg: "Port 22 is open"
+- name: Check if SSH port is open in UFW
+  wait_for:
+    port: 22
+    timeout: 5
+  notify: message

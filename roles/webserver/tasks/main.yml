@@ -1,0 +1,17 @@
+#- name: Update system
+#  import_tasks: update_systems.yml
+
+- name: Apache
+  import_tasks: install_apache.yml
+
+- name: Configure Firewall
+  import_tasks: configure_firewall.yml
+
+- name: Check configuration
+  import_tasks: check_config.yml
+
+- name: Add user
+  import_tasks: manage_users.yml
+
+- name: Deploy Apache website
+  import_tasks: deploy_app.yml
