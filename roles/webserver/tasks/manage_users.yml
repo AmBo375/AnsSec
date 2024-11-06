@@ -7,20 +7,28 @@
       RedHat: wheel
 
   vars_prompt:
-    name: pwd
-    prompt: Password
+    - name: user
+      prompt: Username
+
+    - name: pwd
+      prompt: Password
+
+    - name: access
+      prompt: Is it a sudo user?
 
   tasks:
-    - name: Créer un utilisateur sudo
+    - name: Add a sudo user
       user:
-        name: Ammar
+        name: "{{ user }}"
         password: "{{ pwd | password_hash('sha512') }}"
         groups: "{{ group[ansible_facts['os_family']] }}"
         append: yes
         state: present
+      when: " access  == 'yes' or  access  == 'y' "
 
-    - name: Supprimer un utilisateur
+    - name: Add a user
       user:
-        name: Ammar
-        remove: yes
-        state: absent
+        name: "{{ user }}"
+        password: "{{ pwd | password_hash('sha512') }}"
+        state: present
+      when: " access == 'no' or access == 'n' "
