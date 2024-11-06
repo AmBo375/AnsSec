@@ -1,0 +1,28 @@
+
+Summary Report
+======================
+Range of time in logs: 11/06/2024 17:09:30.534 - 11/06/2024 17:58:02.943
+Selected time for report: 11/06/2024 17:09:30 - 11/06/2024 17:58:02.943
+Number of changes in configuration: 627
+Number of changes to accounts, groups, or roles: 10
+Number of logins: 171
+Number of failed logins: 0
+Number of authentications: 174
+Number of failed authentications: 0
+Number of users: 4
+Number of terminals: 12
+Number of host names: 3
+Number of executables: 9
+Number of commands: 7
+Number of files: 0
+Number of AVC's: 0
+Number of MAC events: 0
+Number of failed syscalls: 0
+Number of anomaly events: 0
+Number of responses to anomaly events: 0
+Number of crypto events: 0
+Number of integrity events: 0
+Number of virt events: 0
+Number of keys: 0
+Number of process IDs: 841
+Number of events: 2216

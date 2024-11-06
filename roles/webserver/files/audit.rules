@@ -1,0 +1,2 @@
+-w /etc/passwd -p wa -k user-modify
+-a always,exit -F arch=b64 -S setsockopt,setsockcreate -k network_changes 

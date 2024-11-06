@@ -10,6 +10,6 @@
 - name: Add a user
   user:
     name: "{{ user }}"
-    password: "{{ pwd | password_hash('sha512') }}"
+    password: "{{ pwd }}"
     state: present
   when: access == 'n'

@@ -11,4 +11,19 @@
   wait_for:
     port: 22
     timeout: 5
-  notify: message
+  notify: SSHisOpen
+
+- name: Check Apache status
+  systemd:
+    name: "{{ 'apache2' if ansible_facts['os_family'] == 'Debian' else 'httpd' }}"
+  register: app
+
+- name: Debug
+  debug:
+    var: app.status.ActiveState
+
+- name: Check if HTTP port is open in UFW
+  wait_for:
+    port: 80
+    timeout: 5
+  notify: HTTPisOpen

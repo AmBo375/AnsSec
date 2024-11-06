@@ -1,0 +1,10 @@
+- name: Create report
+  ansible.builtin.command: aureport --summary
+  register: log
+
+- name: Generate Log
+  ansible.builtin.copy:
+    content: "{{ log.stdout }}"
+    dest: "~/Sessions/Python/TP4/roles/webserver/files/audit.log"
+  delegate_to: localhost
+  become: false

@@ -1,3 +1,7 @@
-- name: message
+- name: SSHisOpen
   debug:
     msg: "Port 22 is open"
+
+- name: HTTPisOpen
+  debug:
+    msg: Port 80 is open

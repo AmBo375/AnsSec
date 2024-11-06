@@ -1,0 +1,14 @@
+- hosts: webserver
+  become: true
+
+  tasks:
+    - name: Enable auditd
+      ansible.builtin.service:
+        name: auditd
+        state: reloaded
+        enabled: yes
+
+    - name: Send rules to remote
+      ansible.builtin.copy:
+        src: "roles/webserver/files/audit.rules"
+        dest: /etc/audit/rules.d/audit.rules

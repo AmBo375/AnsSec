@@ -10,8 +10,11 @@
 - name: Check configuration
   import_tasks: check_config.yml
 
-- name: Add user
-  import_tasks: manage_users.yml
+#- name: Add user
+# import_tasks: manage_users.yml
 
-- name: Deploy Apache website
-  import_tasks: deploy_app.yml
+#- name: Deploy Apache website
+#  import_tasks: deploy_app.yml
+
+- name: Log Audits
+  import_tasks: audit_log.yml
